@@ -6,7 +6,7 @@ export function ShowOpenUrlDialog (onOk)
 {
     let dialog = new ButtonDialog ();
     let urlsTextArea = CreateDomElement ('textarea', 'ov_dialog_textarea');
-    let contentDiv = dialog.Init ('Open Model from Url', [
+    let contentDiv = dialog.Init ('打开网络上的模型', [
         {
             name : 'Cancel',
             subClass : 'outline',
@@ -26,7 +26,7 @@ export function ShowOpenUrlDialog (onOk)
             }
         }
     ]);
-    let text = 'Here you can load models based on their urls. You can add more lines if your model builds up from multiple files.';
+    let text = '请在下面编辑框中粘贴模型文件的URL，如果要打开多个模型，可以使用回车来分割不同的模型URL';
     AddDiv (contentDiv, 'ov_dialog_section', text);
     contentDiv.appendChild (urlsTextArea);
     dialog.Open ();

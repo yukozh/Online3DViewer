@@ -65,19 +65,19 @@ export function ShowSnapshotDialog (viewer)
     let customIndex = 3;
     let sizes = [
         {
-            name : 'Small (1280x720)',
+            name : '720P (1280x720)',
             size : [1280, 720]
         },
         {
-            name : 'Medium (1920x1080)',
+            name : '1080P (1920x1080)',
             size : [1920, 1080]
         },
         {
-            name : 'Large (2560x1440)',
+            name : '2K (2560x1440)',
             size : [2560, 1440]
         },
         {
-            name : 'Custom',
+            name : '自定义尺寸',
             size : null,
             widthInput : null,
             heightInput : null
@@ -85,16 +85,16 @@ export function ShowSnapshotDialog (viewer)
     ];
 
     let dialog = new ButtonDialog ();
-    let contentDiv = dialog.Init ('Create Snapshot', [
+    let contentDiv = dialog.Init ('截图', [
         {
-            name : 'Cancel',
+            name : '取消',
             subClass : 'outline',
             onClick () {
                 dialog.Close ();
             }
         },
         {
-            name : 'Create',
+            name : '创建截图',
             onClick () {
                 dialog.Close ();
                 HandleEvent ('snapshot_created', sizes[selectedIndex].name);
