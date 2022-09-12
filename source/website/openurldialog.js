@@ -8,14 +8,14 @@ export function ShowOpenUrlDialog (onOk)
     let urlsTextArea = CreateDomElement ('textarea', 'ov_dialog_textarea');
     let contentDiv = dialog.Init ('打开网络上的模型', [
         {
-            name : 'Cancel',
+            name : '取消',
             subClass : 'outline',
             onClick () {
                 dialog.Close ();
             }
         },
         {
-            name : 'OK',
+            name : '打开模型',
             onClick () {
                 let urls = [];
                 ReadLines (urlsTextArea.value, (line) => {
