@@ -216,7 +216,7 @@ export class Website
         let items = [];
         if (meshUserData === null) {
             items.push ({
-                name : 'Fit model to window',
+                name : '将模型铺满窗口',
                 icon : 'fit',
                 onClick : () => {
                     this.FitModelToWindow (false);
@@ -224,7 +224,7 @@ export class Website
             });
             if (this.navigator.HasHiddenMesh ()) {
                 items.push ({
-                    name : 'Show all meshes',
+                    name : '显示全部Mesh',
                     icon : 'visible',
                     onClick : () => {
                         this.navigator.ShowAllMeshes (true);
@@ -233,14 +233,14 @@ export class Website
             }
         } else {
             items.push ({
-                name : 'Hide mesh',
+                name : '隐藏Mesh',
                 icon : 'hidden',
                 onClick : () => {
                     this.navigator.ToggleMeshVisibility (meshUserData.originalMeshId);
                 }
             });
             items.push ({
-                name : 'Fit mesh to window',
+                name : '将Mesh铺满窗口',
                 icon : 'fit',
                 onClick : () => {
                     this.navigator.FitMeshToWindow (meshUserData.originalMeshId);
@@ -249,7 +249,7 @@ export class Website
             if (this.navigator.MeshItemCount () > 1) {
                 let isMeshIsolated = this.navigator.IsMeshIsolated (meshUserData.originalMeshId);
                 items.push ({
-                    name : isMeshIsolated ? 'Remove isolation' : 'Isolate mesh',
+                    name : isMeshIsolated ? '显示全部Mesh' : '只看Mesh',
                     icon : isMeshIsolated ? 'deisolate' : 'isolate',
                     onClick : () => {
                         if (isMeshIsolated) {
