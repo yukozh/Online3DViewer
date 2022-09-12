@@ -25,7 +25,7 @@ export class ThreeModelLoaderUI
                 this.CloseDialogIfOpen ();
                 callbacks.onStart ();
                 progressDialog = new ProgressDialog ();
-                progressDialog.Init ('Loading Model');
+                progressDialog.Init ('正在加载模型');
                 progressDialog.Open ();
             },
             onFileListProgress : (current, total) => {
@@ -40,10 +40,10 @@ export class ThreeModelLoaderUI
                 });
             },
             onImportStart : () => {
-                progressDialog.SetText ('Importing Model');
+                progressDialog.SetText ('正在导入模型');
             },
             onVisualizationStart : () => {
-                progressDialog.SetText ('Visualizing Model');
+                progressDialog.SetText ('正在展示模型');
             },
             onModelFinished : (importResult, threeObject) => {
                 progressDialog.Close ();
@@ -74,26 +74,26 @@ export class ThreeModelLoaderUI
     {
         if (importError.code === ImportErrorCode.NoImportableFile) {
             return ShowMessageDialog (
-                'Something went wrong',
-                'No importable file found.',
+                '错误',
+                '该文件不支持展示',
                 null
             );
         } else if (importError.code === ImportErrorCode.FailedToLoadFile) {
             return ShowMessageDialog (
-                'Something went wrong',
-                'Failed to load file for import.',
-                'The remote server refused to fulfill the request. Check if the url is correct, and make sure that CORS requests are allowed on the remote server.'
+                '错误',
+                '加载模型失败',
+                '远程模型文件读取失败'
             );
         } else if (importError.code === ImportErrorCode.ImportFailed) {
             return ShowMessageDialog (
-                'Something went wrong',
-                'Failed to import model.',
+                '错误',
+                '加载模型失败',
                 importError.message
             );
         } else {
             return ShowMessageDialog (
-                'Something went wrong',
-                'Unknown error.',
+                '错误',
+                '未知的错误',
                 null
             );
         }
@@ -102,9 +102,9 @@ export class ThreeModelLoaderUI
     ShowFileSelectorDialog (fileNames, onSelect)
     {
         let dialog = new ButtonDialog ();
-        let contentDiv = dialog.Init ('Select Model', [
+        let contentDiv = dialog.Init ('选择模型', [
             {
-                name : 'Cancel',
+                name : '取消',
                 subClass : 'outline',
                 onClick () {
                     dialog.Close ();
@@ -115,7 +115,7 @@ export class ThreeModelLoaderUI
             onSelect (null);
         });
 
-        let text = 'Multiple importable models found. Select the model you would like to import from the list below.';
+        let text = '这个文件包含了多个模型，请选择要查看的模型';
         AddDiv (contentDiv, 'ov_dialog_message', text);
 
         let fileListSection = AddDiv (contentDiv, 'ov_dialog_section');

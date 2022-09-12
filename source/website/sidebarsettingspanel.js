@@ -174,7 +174,7 @@ class SettingsModelDisplaySection extends SettingsSection
 {
     constructor (parentDiv)
     {
-        super (parentDiv, 'Model Display');
+        super (parentDiv, '模型展示');
 
         this.backgroundColorPicker = null;
 
@@ -197,7 +197,7 @@ class SettingsModelDisplaySection extends SettingsSection
     {
         let backgroundColorDiv = AddDiv (this.contentDiv, 'ov_sidebar_parameter');
         let backgroundColorInput = AddDiv (backgroundColorDiv, 'ov_color_picker');
-        AddDiv (backgroundColorDiv, null, 'Background Color');
+        AddDiv (backgroundColorDiv, null, '背景色');
         let predefinedBackgroundColors = ['#ffffffff', '#e3e3e3ff', '#c9c9c9ff', '#898989ff', '#5f5f5fff', '#494949ff', '#383838ff', '#0f0f0fff'];
         let defaultBackgroundColor = '#' + RGBAColorToHexString (settings.backgroundColor);
         this.backgroundColorPicker = AddColorPicker (backgroundColorInput, true, defaultBackgroundColor, predefinedBackgroundColors, (r, g, b, a) => {
@@ -207,7 +207,7 @@ class SettingsModelDisplaySection extends SettingsSection
 
         this.environmentMapPhongDiv = AddDiv (this.contentDiv, 'ov_sidebar_parameter');
         this.environmentMapPhongInput = AddDiv (this.environmentMapPhongDiv, 'ov_sidebar_image_picker');
-        AddDiv (this.environmentMapPhongDiv, null, 'Background Image');
+        AddDiv (this.environmentMapPhongDiv, null, '背景图');
         this.environmentMapPhongInput.addEventListener ('click', () => {
             this.environmentMapPopup = new EnvironmentMapPopup ();
             this.environmentMapPopup.ShowPopup (this.environmentMapPhongInput, ShadingType.Phong, settings, {
@@ -235,7 +235,7 @@ class SettingsModelDisplaySection extends SettingsSection
 
         let edgeParameterDiv = AddDiv (this.contentDiv, 'ov_sidebar_parameter');
         this.edgeDisplayToggle = AddToggle (edgeParameterDiv, 'ov_sidebar_parameter_toggle');
-        AddDiv (edgeParameterDiv, 'ov_sidebar_parameter_text', 'Show Edges');
+        AddDiv (edgeParameterDiv, 'ov_sidebar_parameter_text', '显示边');
 
         this.edgeSettingsDiv = AddDiv (this.contentDiv, 'ov_sidebar_settings_padded');
         this.edgeDisplayToggle.OnChange (() => {
@@ -253,11 +253,11 @@ class SettingsModelDisplaySection extends SettingsSection
             settings.edgeColor = new RGBColor (r, g, b);
             callbacks.onEdgeColorChange ();
         });
-        AddDiv (edgeColorRow, null, 'Edge Color');
+        AddDiv (edgeColorRow, null, '边的颜色');
 
         let thresholdRow = AddDiv (this.edgeSettingsDiv, 'ov_sidebar_settings_row large');
         this.thresholdSlider = AddRangeSlider (thresholdRow, 0, 90);
-        this.thresholdSlider.setAttribute ('title', 'Edge Angle Threshold');
+        this.thresholdSlider.setAttribute ('title', '边角阈值');
         this.thresholdSliderValue = AddDomElement (thresholdRow, 'span', 'ov_slider_label');
         this.thresholdSlider.addEventListener ('input', () => {
             this.thresholdSliderValue.innerHTML = this.thresholdSlider.value;
@@ -345,7 +345,7 @@ class SettingsImportParametersSection extends SettingsSection
 {
     constructor (parentDiv)
     {
-        super (parentDiv, 'Import Settings');
+        super (parentDiv, '导入设置');
         this.defaultColorPicker = null;
     }
 
@@ -388,7 +388,7 @@ class SettingsAppearanceSection extends SettingsSection
 {
     constructor (parentDiv)
     {
-        super (parentDiv, 'Appearance');
+        super (parentDiv, '界面');
         this.darkModeToggle = null;
     }
 
@@ -401,7 +401,7 @@ class SettingsAppearanceSection extends SettingsSection
             settings.themeId = (this.darkModeToggle.GetStatus () ? Theme.Dark : Theme.Light);
             callbacks.onThemeChange ();
         });
-        AddDiv (darkModeParameterDiv, null, 'Dark Mode');
+        AddDiv (darkModeParameterDiv, null, '深色模式');
 
         let isDarkMode = (settings.themeId === Theme.Dark);
         this.darkModeToggle.SetStatus (isDarkMode);
@@ -428,7 +428,7 @@ export class SidebarSettingsPanel extends SidebarPanel
         this.importParametersSection = new SettingsImportParametersSection (this.sectionsDiv);
         this.appearanceSection = new SettingsAppearanceSection (this.sectionsDiv);
 
-        this.resetToDefaultsButton = AddDiv (this.contentDiv, 'ov_button ov_panel_button outline', 'Reset to Default');
+        this.resetToDefaultsButton = AddDiv (this.contentDiv, 'ov_button ov_panel_button outline', '还原默认设置');
         this.resetToDefaultsButton.addEventListener ('click', () => {
             this.ResetToDefaults ();
         });
@@ -436,7 +436,7 @@ export class SidebarSettingsPanel extends SidebarPanel
 
     GetName ()
     {
-        return 'Settings';
+        return '设置';
     }
 
     HasTitle ()

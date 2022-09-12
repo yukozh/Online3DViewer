@@ -74,7 +74,7 @@ export class NavigatorMaterialsPanel extends NavigatorPanel
 
     GetName ()
     {
-        return 'Materials';
+        return '材质';
     }
 
     GetIcon ()

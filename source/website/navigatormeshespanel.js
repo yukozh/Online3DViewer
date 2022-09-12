@@ -28,7 +28,7 @@ class NavigatorMaterialsPopupButton extends NavigatorPopupButton
             return;
         }
 
-        let materialsText = 'Materials (' + this.materialInfoArray.length + ')';
+        let materialsText = '材质 (' + this.materialInfoArray.length + ')';
         this.buttonText.innerHTML = materialsText;
     }
 

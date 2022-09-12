@@ -53,8 +53,8 @@ class ModelExporterUI
             return AddSelectWithCookieSave (parameterValueDiv, cookieKey, values, defaultIndex);
         }
 
-        this.visibleOnlySelect = AddSelectItem (parametersDiv, 'Scope', 'ov_last_scope', ['Entire Model', 'Visible Only'], 1);
-        this.rotationSelect = AddSelectItem (parametersDiv, 'Rotation', 'ov_last_rotation', ['No Rotation', '-90 Degrees', '90 Degrees'], 0);
+        this.visibleOnlySelect = AddSelectItem (parametersDiv, '导出范围', 'ov_last_scope', ['整个模型', '当前可见部分'], 1);
+        this.rotationSelect = AddSelectItem (parametersDiv, '旋转', 'ov_last_rotation', ['不翻转', '-90°', '90°'], 0);
     }
 
     ExportModel (model, callbacks)
@@ -77,15 +77,15 @@ class ModelExporterUI
         let exporterModel = new ExporterModel (model, settings);
         if (exporterModel.MeshInstanceCount () === 0) {
             ShowMessageDialog (
-                'Export Failed',
-                'The model doesn\'t contain any meshes.',
+                '导出失败',
+                '这个模型中没有任何Mesh',
                 null
             );
             return;
         }
 
         let progressDialog = new ProgressDialog ();
-        progressDialog.Init ('Exporting Model');
+        progressDialog.Init ('正在导出...');
         progressDialog.Open ();
 
         RunTaskAsync (() => {
@@ -142,16 +142,16 @@ class ExportDialog
     Open (model, viewer)
     {
         let mainDialog = new ButtonDialog ();
-        let contentDiv = mainDialog.Init ('Export', [
+        let contentDiv = mainDialog.Init ('导出', [
             {
-                name : 'Close',
+                name : '关闭',
                 subClass : 'outline',
                 onClick () {
                     mainDialog.Close ();
                 }
             },
             {
-                name : 'Export',
+                name : '导出',
                 onClick : () => {
                     mainDialog.Close ();
                     this.ExportFormat (model, viewer);
@@ -159,7 +159,7 @@ class ExportDialog
             }
         ]);
 
-        let text = 'Select the format from the list below, and adjust the settings of the selected format.';
+        let text = '请您选择一个导出格式，并配置导出参数。';
         AddDiv (contentDiv, 'ov_dialog_section', text);
 
         let formatRow = AddDiv (contentDiv, 'ov_dialog_row');

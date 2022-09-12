@@ -532,10 +532,10 @@ export class Website
 
         let importer = this.modelLoaderUI.GetImporter ();
 
-        AddButton (this.toolbar, 'open', 'Open model from your device', [], () => {
+        AddButton (this.toolbar, 'open', '从硬盘中打开模型', [], () => {
             this.OpenFileBrowserDialog ();
         });
-        AddButton (this.toolbar, 'open_url', 'Open model from a url', [], () => {
+        AddButton (this.toolbar, 'open_url', '从URL打开模型', [], () => {
             ShowOpenUrlDialog ((urls) => {
                 if (urls.length > 0) {
                     this.hashHandler.SetModelFilesToHash (urls);
@@ -543,20 +543,20 @@ export class Website
             });
         });
         AddSeparator (this.toolbar, ['only_on_model']);
-        AddButton (this.toolbar, 'fit', 'Fit model to window', ['only_on_model'], () => {
+        AddButton (this.toolbar, 'fit', '适合窗口', ['only_on_model'], () => {
             this.FitModelToWindow (false);
         });
-        AddButton (this.toolbar, 'up_y', 'Set Y axis as up vector', ['only_on_model'], () => {
+        AddButton (this.toolbar, 'up_y', 'Y轴向上', ['only_on_model'], () => {
             this.viewer.SetUpVector (Direction.Y, true);
         });
-        AddButton (this.toolbar, 'up_z', 'Set Z axis as up vector', ['only_on_model'], () => {
+        AddButton (this.toolbar, 'up_z', 'Z轴向上', ['only_on_model'], () => {
             this.viewer.SetUpVector (Direction.Z, true);
         });
-        AddButton (this.toolbar, 'flip', 'Flip up vector', ['only_on_model'], () => {
+        AddButton (this.toolbar, 'flip', '上下翻转', ['only_on_model'], () => {
             this.viewer.FlipUpVector ();
         });
         AddSeparator (this.toolbar, ['only_on_model']);
-        AddRadioButton (this.toolbar, ['fix_up_on', 'fix_up_off'], ['Fixed up vector', 'Free orbit'], 0, ['only_on_model'], (buttonIndex) => {
+        AddRadioButton (this.toolbar, ['fix_up_on', 'fix_up_off'], ['沿轴旋转', '自由旋转'], 0, ['only_on_model'], (buttonIndex) => {
             if (buttonIndex === 0) {
                 this.viewer.SetFixUpVector (true);
             } else if (buttonIndex === 1) {
@@ -564,26 +564,29 @@ export class Website
             }
         });
         AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
-        let measureToolButton = AddPushButton (this.toolbar, 'measure', 'Measure', ['only_full_width', 'only_on_model'], (isSelected) => {
+        let measureToolButton = AddPushButton (this.toolbar, 'measure', '测量', ['only_full_width', 'only_on_model'], (isSelected) => {
             HandleEvent ('measure_tool_activated', isSelected ? 'on' : 'off');
             this.navigator.SetSelection (null);
             this.measureTool.SetActive (isSelected);
         });
         this.measureTool.SetButton (measureToolButton);
         AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
-        AddButton (this.toolbar, 'snapshot', 'Create snapshot', ['only_full_width', 'only_on_model'], () => {
+        AddButton (this.toolbar, 'snapshot', '截图', ['only_full_width', 'only_on_model'], () => {
             ShowSnapshotDialog (this.viewer);
         });
-        AddButton (this.toolbar, 'export', 'Export model', ['only_full_width', 'only_on_model'], () => {
+        AddButton (this.toolbar, 'export', '导出', ['only_full_width', 'only_on_model'], () => {
             ShowExportDialog (this.model, this.viewer, {
                 isMeshVisible : (meshInstanceId) => {
                     return this.navigator.IsMeshVisible (meshInstanceId);
                 }
             });
         });
-        AddButton (this.toolbar, 'share', 'Share model', ['only_full_width', 'only_on_model'], () => {
+        // TODO: CSCAD Make share link
+        /*
+        AddButton (this.toolbar, 'share', '分享模型', ['only_full_width', 'only_on_model'], () => {
             ShowSharingDialog (importer.GetFileList (), this.settings, this.viewer.GetCamera ());
         });
+        */
 
         this.parameters.fileInput.addEventListener ('change', (ev) => {
             if (ev.target.files.length > 0) {
@@ -769,6 +772,7 @@ export class Website
 
     InitCookieConsent ()
     {
+        /*
         let accepted = CookieGetBoolVal ('ov_cookie_consent', false);
         if (accepted) {
             return;
@@ -782,5 +786,6 @@ export class Website
             CookieSetBoolVal ('ov_cookie_consent', true);
             popupDiv.remove ();
         });
+        */
     }
 }

@@ -1,6 +1,6 @@
 import * as childProcess from 'child_process';
 
-let pythonExecutable = 'python';
+let pythonExecutable = 'py';
 if (process.platform !== 'win32') {
     pythonExecutable = 'python3';
 }

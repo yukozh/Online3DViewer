@@ -19,7 +19,7 @@ export class SidebarDetailsPanel extends SidebarPanel
 
     GetName ()
     {
-        return 'Details';
+        return '几何信息';
     }
 
     GetIcon ()
@@ -33,19 +33,19 @@ export class SidebarDetailsPanel extends SidebarPanel
         let table = AddDiv (this.contentDiv, 'ov_property_table');
         let boundingBox = GetBoundingBox (object3D);
         let size = SubCoord3D (boundingBox.max, boundingBox.min);
-        this.AddProperty (table, new Property (PropertyType.Integer, 'Vertices', object3D.VertexCount ()));
-        this.AddProperty (table, new Property (PropertyType.Integer, 'Triangles', object3D.TriangleCount ()));
-        this.AddProperty (table, new Property (PropertyType.Number, 'Size X', size.x));
-        this.AddProperty (table, new Property (PropertyType.Number, 'Size Y', size.y));
-        this.AddProperty (table, new Property (PropertyType.Number, 'Size Z', size.z));
-        this.AddCalculatedProperty (table, 'Volume', () => {
+        this.AddProperty (table, new Property (PropertyType.Integer, '顶点', object3D.VertexCount ()));
+        this.AddProperty (table, new Property (PropertyType.Integer, '三角形', object3D.TriangleCount ()));
+        this.AddProperty (table, new Property (PropertyType.Number, 'X 长度', size.x));
+        this.AddProperty (table, new Property (PropertyType.Number, 'Y 长度', size.y));
+        this.AddProperty (table, new Property (PropertyType.Number, 'Z 长度', size.z));
+        this.AddCalculatedProperty (table, '体积', () => {
             if (!IsTwoManifold (object3D)) {
                 return null;
             }
             const volume = CalculateVolume (object3D);
             return new Property (PropertyType.Number, null, volume);
         });
-        this.AddCalculatedProperty (table, 'Surface', () => {
+        this.AddCalculatedProperty (table, '表面积', () => {
             const surfaceArea = CalculateSurfaceArea (object3D);
             return new Property (PropertyType.Number, null, surfaceArea);
         });
@@ -139,7 +139,7 @@ export class SidebarDetailsPanel extends SidebarPanel
         let valueColumn = AddDiv (row, 'ov_property_table_cell ov_property_table_value');
         nameColumn.setAttribute ('title', name);
 
-        let calculateButton = AddDiv (valueColumn, 'ov_property_table_button', 'Calculate...');
+        let calculateButton = AddDiv (valueColumn, 'ov_property_table_button', '<点击计算>');
         calculateButton.addEventListener ('click', () => {
             ClearDomElement (valueColumn);
             valueColumn.innerHTML = 'Please wait...';

@@ -11,7 +11,7 @@ export class NavigatorFilesPanel extends NavigatorPanel
 
     GetName ()
     {
-        return 'Files';
+        return '文件';
     }
 
     GetIcon ()
